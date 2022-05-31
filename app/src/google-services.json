@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "812104362998",
+    "project_id": "mad-assignment-1-7b524",
+    "storage_bucket": "mad-assignment-1-7b524.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812104362998:android:a7f6e6b6329e97f1e875d7",
+        "android_client_info": {
+          "package_name": "sg.edu.np.mad.Assignment1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812104362998-c8emtjoljh5cphskn0v24u3unbg9c4st.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPqnyIyr7gyk6kYM-YVdtoibUHHO06m_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812104362998-c8emtjoljh5cphskn0v24u3unbg9c4st.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
