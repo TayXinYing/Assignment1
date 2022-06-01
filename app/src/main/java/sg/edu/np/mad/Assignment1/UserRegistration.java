@@ -1,11 +1,13 @@
 package sg.edu.np.mad.Assignment1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +29,12 @@ public class UserRegistration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_registration);
+
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+
+        // showing the back button in action bar
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         registerEmail = findViewById(R.id.registerEmailText);
         registerPassword = findViewById(R.id.registerPasswordText);
@@ -67,6 +75,11 @@ public class UserRegistration extends AppCompatActivity {
                     return;
                 }
 
+                if(password2 != password){
+                    registerPassword2.setError("Password not the same as above");
+                    return;
+                }
+
                 //Registering the user in FireBase
                 fAuth1.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -92,5 +105,14 @@ public class UserRegistration extends AppCompatActivity {
 
             }
         });
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
