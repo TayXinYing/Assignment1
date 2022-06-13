@@ -64,16 +64,16 @@ public class UserRegistration extends AppCompatActivity {
                 }
 
                 if(password.length() < 6){
-                    registerPassword.setError("Password must be more than 6 Characters");
+                    registerPassword.setError("Password must be more than 5 Characters");
                     return;
                 }
 
                 if(TextUtils.isEmpty(password)){
-                    registerPassword2.setError("Re-Enter your password");
+                    registerPassword2.setError("Please Enter your password");
                     return;
                 }
 
-                if(password2 != password){
+                if(!password2.equals(password)){
                     registerPassword2.setError("Password not the same as above");
                     return;
                 }
@@ -83,12 +83,11 @@ public class UserRegistration extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(UserRegistration.this, "User Created",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UserRegistration.this, "User Created, you may now login",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), UserLogin.class));
                         }
                         else{
                             Toast.makeText(UserRegistration.this, "Error!" + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 });
