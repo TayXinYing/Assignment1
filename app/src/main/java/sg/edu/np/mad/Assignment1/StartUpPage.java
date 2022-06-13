@@ -16,6 +16,7 @@ public class StartUpPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_up_page);
 
+        //Button to Login and Register Page CODES//
         mloginButton = findViewById(R.id.mainLogin);
         mregisterButton = findViewById(R.id.mainRegister);
 
@@ -32,5 +33,6 @@ public class StartUpPage extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), UserRegistration.class));
             }
         });
+        //Button to Login and Register Page CODES//
     }
 }

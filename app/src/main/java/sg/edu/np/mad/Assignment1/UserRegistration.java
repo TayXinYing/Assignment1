@@ -30,23 +30,21 @@ public class UserRegistration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_registration);
 
+        //Action Bar CODES//
         // calling the action bar
         ActionBar actionBar = getSupportActionBar();
 
         // showing the back button in action bar
         actionBar.setDisplayHomeAsUpEnabled(true);
+        //Action Bar CODES//
 
+        //Registering the new user CODES//
         registerEmail = findViewById(R.id.registerEmailText);
         registerPassword = findViewById(R.id.registerPasswordText);
         registerPassword2 = findViewById(R.id.reenterpasswordText);
         registerButton = findViewById(R.id.registerButton);
         loginWord = findViewById(R.id.loginText);
         fAuth1 = FirebaseAuth.getInstance();
-
-        //if(fAuth.getCurrentUser() != null){
-        //    startActivity(new Intent(getApplicationContext(), UserLogin.class));
-        //    finish();
-        //}
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,15 +94,17 @@ public class UserRegistration extends AppCompatActivity {
                 });
             }
         });
+        //Registering the new user CODES//
 
 
+        //Go to LOGIN Page if account exist CODES//
         loginWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), UserLogin.class));
-
             }
         });
+        //Go to LOGIN Page if account exist CODES//
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
