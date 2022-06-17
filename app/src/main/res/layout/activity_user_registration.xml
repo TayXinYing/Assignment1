@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="276dp"
+        android:layout_marginBottom="264dp"
         android:ems="13"
         android:hint="Re-Enter your password here"
         android:inputType="textPassword"
@@ -49,29 +49,26 @@
         android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
-        android:text="Register"
+        android:layout_marginBottom="156dp"
         android:backgroundTint="@android:color/transparent"
-        app:strokeColor="@android:color/black"
-        app:strokeWidth="1dp"
-        app:rippleColor="@android:color/black"
+        android:text="Register"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </Button>
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@android:color/black"
+        app:strokeColor="@android:color/black"
+        app:strokeWidth="1dp"></Button>
 
     <TextView
         android:id="@+id/loginText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         android:text="Have an account already? Click here to login"
         app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -116,7 +113,7 @@
         android:layout_width="42dp"
         android:layout_height="33dp"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="62dp"
+        android:layout_marginBottom="91dp"
         app:layout_constraintBottom_toTopOf="@+id/loginText"
         app:layout_constraintEnd_toStartOf="@+id/registerPasswordText"
         app:layout_constraintHorizontal_bias="0.61"

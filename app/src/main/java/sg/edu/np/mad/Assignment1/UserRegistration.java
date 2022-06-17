@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -33,6 +34,10 @@ public class UserRegistration extends AppCompatActivity {
         //Action Bar CODES//
         // calling the action bar
         ActionBar actionBar = getSupportActionBar();
+
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+
+        actionBar.setHomeAsUpIndicator(R.drawable.backbutton_icon);
 
         // showing the back button in action bar
         actionBar.setDisplayHomeAsUpEnabled(true);

@@ -1,5 +1,6 @@
 package sg.edu.np.mad.Assignment1;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,6 +16,9 @@ public class StartUpPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_up_page);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         //Button to Login and Register Page CODES//
         mloginButton = findViewById(R.id.mainLogin);
