@@ -57,6 +57,7 @@ public class VideoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_video, container, false);
 
         eduVideos = (RecyclerView) view.findViewById(R.id.eduVideos);
+        eduVideos.setHasFixedSize(true);
 
         loadVideosFromFirebase();
 
