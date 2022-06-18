@@ -19,12 +19,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class UserRegistration extends AppCompatActivity {
-    EditText registerEmail, registerPassword, registerPassword2;
+    EditText registerUsername, registerEmail, registerPassword, registerPassword2;
     Button registerButton;
     TextView loginWord;
     FirebaseAuth fAuth1;
+    DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,22 +47,30 @@ public class UserRegistration extends AppCompatActivity {
         //Action Bar CODES//
 
         //Registering the new user CODES//
+        registerUsername = findViewById(R.id.registerUsernameText);
         registerEmail = findViewById(R.id.registerEmailText);
         registerPassword = findViewById(R.id.registerPasswordText);
         registerPassword2 = findViewById(R.id.reenterpasswordText);
         registerButton = findViewById(R.id.registerButton);
         loginWord = findViewById(R.id.loginText);
         fAuth1 = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance("https://mad-assignment-1-7b524-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String username = registerUsername.getText().toString();
                 String email = registerEmail.getText().toString();
                 String password = registerPassword.getText().toString();
                 String password2 = registerPassword2.getText().toString();
 
+                if(TextUtils.isEmpty(username)){
+                    registerUsername.setError("Username is required");
+                    return;
+                }
+
                 if(TextUtils.isEmpty(email)){
-                    registerEmail.setError("Username is required");
+                    registerEmail.setError("Email is required");
                     return;
                 }
 
@@ -89,7 +100,14 @@ public class UserRegistration extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(UserRegistration.this, "User Created, you may now login",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), UserLogin.class));
+
+                            writeNewUser(username, email);
+
+                            Intent intent = new Intent(getApplicationContext(), UserLogin.class);
+                            intent.putExtra("registeredemail", email);
+
+                            startActivity(intent);
+                            //startActivity(new Intent(getApplicationContext(), UserLogin.class));
                         }
                         else{
                             Toast.makeText(UserRegistration.this, "Error!" + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
@@ -110,6 +128,13 @@ public class UserRegistration extends AppCompatActivity {
         });
         //Go to LOGIN Page if account exist CODES//
     }
+
+    public void writeNewUser(String name, String email) {
+        User user = new User(name, email);
+
+        mDatabase.child("Users").setValue(user);
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {

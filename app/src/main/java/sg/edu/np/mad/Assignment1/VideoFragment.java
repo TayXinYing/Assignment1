@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +39,9 @@ public class VideoFragment extends Fragment {
 
     private AdapterVideo adapterVideo;
 
-    public boolean alreadyExecuted;
+    public boolean alreadyExecuted = false;
+
+    DBHandler dbHandler = new DBHandler(mContext);
 
 
 
@@ -60,32 +63,51 @@ public class VideoFragment extends Fragment {
         return view;
     }
 
+
+
     private void loadVideosFromFirebase(){
-        videosArrayList = new ArrayList<>();
 
-        DatabaseReference ref = FirebaseDatabase.getInstance("https://mad-assignment-1-7b524-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Videos");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.d("Requested", "Requested");
-                //clear list before adding data into it
-                for (DataSnapshot ds: snapshot.getChildren()){
-                    //get data
-                    ModelVideos modelVideos = ds.getValue(ModelVideos.class);
-                    //add model/data to list
-                    videosArrayList.add(modelVideos);
+        if(!alreadyExecuted){
+            Log.d("Firebase", "Requested");
+
+            DatabaseReference ref = FirebaseDatabase.getInstance("https://mad-assignment-1-7b524-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Videos");
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    //clear list before adding data into it
+                    for (DataSnapshot ds: snapshot.getChildren()){
+                        //get data
+                        ModelVideos modelVideos = ds.getValue(ModelVideos.class);
+                        //dbHandler.insertUsers(modelVideos);
+
+                        //add model/data to list
+                        videosArrayList.add(modelVideos);
+                    }
+                    //videosArrayList = dbHandler.getUsers();
+                    //setup adapter
+                    adapterVideo = new AdapterVideo(mContext, videosArrayList); //was dbHandler.getUsers()
+                    //set adapter to recyclerview
+                    eduVideos.setAdapter(adapterVideo);
+
+                    alreadyExecuted = true;
                 }
-                //setup adapter
-                adapterVideo = new AdapterVideo(mContext, videosArrayList);
-                //set adapter to recyclerview
-                eduVideos.setAdapter(adapterVideo);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                }
+            });
+        }
+        else{
+            Log.d("Firebase", "No more Requested");
+
+            //setup adapter
+            adapterVideo = new AdapterVideo(mContext, videosArrayList); //was dbHandler.getUsers()
+            //set adapter to recyclerview
+            eduVideos.setAdapter(adapterVideo);
+        }
+
+
     }
 
 

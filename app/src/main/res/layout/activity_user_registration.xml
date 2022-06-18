@@ -7,6 +7,20 @@
     tools:context=".UserRegistration">
 
     <EditText
+        android:id="@+id/registerUsernameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="12dp"
+        android:ems="13"
+        android:hint="Username"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/registerEmailText"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
         android:id="@+id/registerEmailText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -95,6 +109,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/usernameiconView"
+        android:layout_width="42dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintEnd_toStartOf="@+id/registerUsernameText"
+        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/user_icon" />
 
     <ImageView
         android:id="@+id/imageView3"

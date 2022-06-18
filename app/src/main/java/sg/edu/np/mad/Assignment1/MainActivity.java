@@ -1,13 +1,16 @@
 package sg.edu.np.mad.Assignment1;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -40,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     RewardsFragment rewardsFragment = new RewardsFragment();
     ProfileFragment profileFragment = new ProfileFragment();
 
+
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -66,4 +71,31 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
         return false;
     }
+
+    public boolean onButtonSelected(View view) {
+
+        switch (view.getId()) {
+            case R.id.button:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, videoFragment).commit();
+                return true;
+
+            case R.id.button2:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, uploadFragment).commit();
+                return true;
+
+            case R.id.button3:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, rewardsFragment).commit();
+                return true;
+
+            case R.id.button4:
+                Intent intent3 = new Intent(view.getContext(), FAQHelp.class);
+                startActivity(intent3);
+                return true;
+        }
+        return false;
+    }
+
+
+
+
 }

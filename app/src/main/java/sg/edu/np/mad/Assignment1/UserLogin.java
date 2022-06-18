@@ -50,6 +50,17 @@ public class UserLogin extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         registerWord = findViewById(R.id.signupText);
 
+        String registeredEmail;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+            }
+            else {
+                registeredEmail = extras.getString("registeredemail");
+                loginEmail.setText(registeredEmail);
+            }
+        }
+
         registerWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,4 +111,6 @@ public class UserLogin extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
