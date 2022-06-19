@@ -2,17 +2,18 @@ package sg.edu.np.mad.Assignment1;
 
 public class User {
 
-    public String username;
     public String email;
+    public String username;
 
 
     public User(){
 
     }
 
-    public User(String username, String email) {
-        this.username = username;
+    public User(String email, String username) {
         this.email = email;
+        this.username = username;
+
     }
 
 }

@@ -77,12 +77,9 @@ public class VideoFragment extends Fragment {
                     for (DataSnapshot ds: snapshot.getChildren()){
                         //get data
                         ModelVideos modelVideos = ds.getValue(ModelVideos.class);
-                        //dbHandler.insertUsers(modelVideos);
-
                         //add model/data to list
                         videosArrayList.add(modelVideos);
                     }
-                    //videosArrayList = dbHandler.getUsers();
                     //setup adapter
                     adapterVideo = new AdapterVideo(mContext, videosArrayList); //was dbHandler.getUsers()
                     //set adapter to recyclerview

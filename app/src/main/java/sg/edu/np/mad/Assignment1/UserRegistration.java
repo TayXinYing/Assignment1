@@ -22,6 +22,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class UserRegistration extends AppCompatActivity {
     EditText registerUsername, registerEmail, registerPassword, registerPassword2;
     Button registerButton;
@@ -59,10 +62,12 @@ public class UserRegistration extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = registerUsername.getText().toString();
-                String email = registerEmail.getText().toString();
-                String password = registerPassword.getText().toString();
-                String password2 = registerPassword2.getText().toString();
+                String id = registerEmail.getText().toString().replace(".", "").trim();
+                String username = registerUsername.getText().toString().trim();
+                String email = registerEmail.getText().toString().trim();
+                String password = registerPassword.getText().toString().trim();
+                String password2 = registerPassword2.getText().toString().trim();
+
 
                 if(TextUtils.isEmpty(username)){
                     registerUsername.setError("Username is required");
@@ -101,7 +106,7 @@ public class UserRegistration extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Toast.makeText(UserRegistration.this, "User Created, you may now login",Toast.LENGTH_SHORT).show();
 
-                            writeNewUser(username, email);
+                            writeNewUser(id, email, username);
 
                             Intent intent = new Intent(getApplicationContext(), UserLogin.class);
                             intent.putExtra("registeredemail", email);
@@ -129,10 +134,10 @@ public class UserRegistration extends AppCompatActivity {
         //Go to LOGIN Page if account exist CODES//
     }
 
-    public void writeNewUser(String name, String email) {
-        User user = new User(name, email);
+    public void writeNewUser(String id, String email, String name) {
+        User user = new User(email, name);
 
-        mDatabase.child("Users").setValue(user);
+        mDatabase.child("Users").child(id).setValue(user);
     }
 
     @Override

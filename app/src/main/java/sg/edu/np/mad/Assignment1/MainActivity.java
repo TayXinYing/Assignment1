@@ -77,14 +77,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         switch (view.getId()) {
             case R.id.button:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, videoFragment).commit();
+                bottomNavigationView.setSelectedItemId(R.id.video);
                 return true;
 
             case R.id.button2:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, uploadFragment).commit();
+                bottomNavigationView.setSelectedItemId(R.id.upload);
                 return true;
 
             case R.id.button3:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, rewardsFragment).commit();
+                bottomNavigationView.setSelectedItemId(R.id.reward);
                 return true;
 
             case R.id.button4:
