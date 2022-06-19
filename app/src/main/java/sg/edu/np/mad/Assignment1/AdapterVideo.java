@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
+import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.ui.PlayerView;
 
 import java.net.URI;
@@ -50,12 +53,16 @@ public class AdapterVideo extends RecyclerView.Adapter<AdapterVideo.HolderVideo>
     public HolderVideo onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.listedvideos, parent, false);
 
+        MediaSource.Factory mediaSourceFactory = new DefaultMediaSourceFactory(context);
+
         return new HolderVideo(view);
     }
 
 
     @Override
     public void onBindViewHolder(@NonNull HolderVideo holder, int position) {
+
+        Log.d("Viewholder", "Set videos");
 
         ModelVideos modelVideos = videosArrayList.get(position);
 

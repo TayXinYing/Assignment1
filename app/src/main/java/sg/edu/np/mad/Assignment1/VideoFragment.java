@@ -5,9 +5,11 @@ import android.graphics.ColorSpace;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class VideoFragment extends Fragment {
+
+    Parcelable recyclerViewState;
 
     private Context mContext;
 
@@ -58,6 +62,8 @@ public class VideoFragment extends Fragment {
         //eduVideos.setHasFixedSize(true);
 
         loadVideosFromFirebase();
+
+        onSaveInstanceState(savedInstanceState);
 
         return view;
     }
@@ -102,9 +108,5 @@ public class VideoFragment extends Fragment {
             //set adapter to recyclerview
             eduVideos.setAdapter(adapterVideo);
         }
-
-
     }
-
-
 }

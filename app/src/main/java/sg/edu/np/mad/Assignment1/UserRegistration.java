@@ -112,7 +112,6 @@ public class UserRegistration extends AppCompatActivity {
                             intent.putExtra("registeredemail", email);
 
                             startActivity(intent);
-                            //startActivity(new Intent(getApplicationContext(), UserLogin.class));
                         }
                         else{
                             Toast.makeText(UserRegistration.this, "Error!" + task.getException().getMessage(),Toast.LENGTH_SHORT).show();

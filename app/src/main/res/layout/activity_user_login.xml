@@ -26,13 +26,13 @@
         android:layout_marginBottom="84dp"
         android:text="Create an account here"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/loginEmailText"
+        app:layout_constraintBottom_toTopOf="@+id/emailToChange"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/loginEmailText"
+        android:id="@+id/emailToChange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -58,33 +58,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <TextView
-        android:id="@+id/signupText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
-        android:clickable="true"
-        android:text="Do not have an account yet? Click here to sign up"
-        app:layout_constraintBottom_toTopOf="@+id/loginButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="TouchTargetSizeCheck" />
-
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="174dp"
-        android:text="Login"
+        android:layout_marginBottom="132dp"
         android:backgroundTint="@android:color/transparent"
-        app:strokeColor="@android:color/black"
-        app:strokeWidth="1dp"
-        app:rippleColor="@android:color/black"
+        android:text="Login"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@android:color/black"
+        app:strokeColor="@android:color/black"
+        app:strokeWidth="1dp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -93,7 +81,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toStartOf="@+id/loginEmailText"
+        app:layout_constraintEnd_toStartOf="@+id/emailToChange"
         app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/email_icon" />
@@ -103,11 +91,36 @@
         android:layout_width="42dp"
         android:layout_height="33dp"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="38dp"
-        app:layout_constraintBottom_toTopOf="@+id/signupText"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/forgotPassword"
         app:layout_constraintEnd_toStartOf="@+id/loginPasswordText"
         app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/passwordlock_icon" />
+
+    <TextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:text="@string/forgotPassword"
+        android:textColor="#3E3939"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/signupText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/signupText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:clickable="true"
+        android:text="@string/registerHere"
+        android:textColor="#4A4747"
+        app:layout_constraintBottom_toTopOf="@+id/submitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,12 +19,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.auth.User;
 
 public class UserLogin extends AppCompatActivity {
     EditText loginEmail, loginPassword;
     Button loginButton;
-    TextView registerWord;
+    TextView registerWord, forgotPassword;
     FirebaseAuth fAuth;
 
 
@@ -44,11 +43,12 @@ public class UserLogin extends AppCompatActivity {
         // showing the back button in action bar
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        loginEmail = findViewById(R.id.loginEmailText);
+        loginEmail = findViewById(R.id.emailToChange);
         loginPassword = findViewById(R.id.loginPasswordText);
-        loginButton = findViewById(R.id.loginButton);
+        loginButton = findViewById(R.id.submitButton);
         fAuth = FirebaseAuth.getInstance();
         registerWord = findViewById(R.id.signupText);
+        forgotPassword = findViewById(R.id.forgotPassword);
 
         String registeredEmail;
         if (savedInstanceState == null) {
@@ -60,6 +60,13 @@ public class UserLogin extends AppCompatActivity {
                 loginEmail.setText(registeredEmail);
             }
         }
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ChangePassword.class));
+            }
+        });
 
         registerWord.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,10 +96,11 @@ public class UserLogin extends AppCompatActivity {
                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        String test;
                         if(task.isSuccessful()){
                             Toast.makeText(UserLogin.this, "Logged in successfully",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra("LoggedInEmail", email);
+                            startActivity(intent);
                         }
                         else{
                             Toast.makeText(UserLogin.this, "Credentials are wrong, please try again",Toast.LENGTH_SHORT).show();

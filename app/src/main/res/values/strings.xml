@@ -2,4 +2,8 @@
     <string name="app_name">Recyclops</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="forgotPassword"><u>Forgot Password?</u></string>
+    <string name="registerHere"><u>Do not have an account? Register here</u></string>
+    <string name="loginHere"><b><u>Already have an account? Login here</u></b></string>
+
 </resources>

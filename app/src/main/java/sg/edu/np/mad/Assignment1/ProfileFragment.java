@@ -1,5 +1,6 @@
 package sg.edu.np.mad.Assignment1;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +24,8 @@ public class ProfileFragment extends Fragment {
 
     private TextView username, email;
 
+    Button changeUsernamebtn, changePasswordbtn;
+
     DatabaseReference mDatabase;
 
     public ProfileFragment(){
@@ -33,12 +37,16 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_profile, container, false);
 
+        changeUsernamebtn = (Button) view.findViewById(R.id.button5) ;
+        changePasswordbtn = (Button) view.findViewById(R.id.button6);
         username = (TextView) view.findViewById(R.id.textView8);
         email = (TextView) view.findViewById(R.id.textView9);
 
+        email.setText(MainActivity.loggedInEmail);
+
         mDatabase = FirebaseDatabase.getInstance("https://mad-assignment-1-7b524-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
 
-        mDatabase.child("Users").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDatabase.child("Users").child(MainActivity.loggedInEmail.replace(".", "").trim()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
@@ -46,10 +54,27 @@ public class ProfileFragment extends Fragment {
                 }
                 else {
                     username.setText(String.valueOf(task.getResult().child("username").getValue()));
-                    email.setText(String.valueOf(task.getResult().child("email").getValue()));
                 }
             }
         });
+
+        changeUsernamebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), ChangeUsername.class);
+                startActivity(intent);
+            }
+        });
+
+        changePasswordbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), ChangePassword.class);
+                startActivity(intent);
+            }
+        });
+
+
         return view;
     }
 }

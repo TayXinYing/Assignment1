@@ -47,8 +47,7 @@
         android:layout_below="@id/textView8"
         android:layout_centerHorizontal="true"
         android:text="Email Address"
-        android:textSize="24sp"
-        />
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/button5"
@@ -57,7 +56,11 @@
         android:layout_below="@id/textView9"
         android:layout_centerHorizontal="true"
         android:text="Change Username"
-         />
+        android:backgroundTint="@android:color/transparent"
+        android:textColor="@android:color/black"
+        app:rippleColor="@android:color/black"
+        app:strokeColor="@android:color/black"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/button6"
@@ -65,6 +68,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/button5"
         android:layout_centerHorizontal="true"
-        android:text="Change Email" />
+        android:text="Change Password"
+        android:backgroundTint="@android:color/transparent"
+        android:textColor="@android:color/black"
+        app:rippleColor="@android:color/black"
+        app:strokeColor="@android:color/black"
+        app:strokeWidth="1dp" />
 
 </RelativeLayout>
