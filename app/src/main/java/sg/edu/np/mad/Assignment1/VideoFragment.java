@@ -35,13 +35,11 @@ public class VideoFragment extends Fragment {
 
     private RecyclerView eduVideos;
 
-    public ArrayList<ModelVideos> videosArrayList = new ArrayList<>();
+    public static ArrayList<ModelVideos> videosArrayList = new ArrayList<>();
 
     private AdapterVideo adapterVideo;
 
     public boolean alreadyExecuted = false;
-
-    DBHandler dbHandler = new DBHandler(mContext);
 
 
 
@@ -57,7 +55,7 @@ public class VideoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_video, container, false);
 
         eduVideos = (RecyclerView) view.findViewById(R.id.eduVideos);
-        eduVideos.setHasFixedSize(true);
+        //eduVideos.setHasFixedSize(true);
 
         loadVideosFromFirebase();
 

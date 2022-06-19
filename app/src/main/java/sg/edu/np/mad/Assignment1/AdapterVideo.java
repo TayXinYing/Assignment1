@@ -1,6 +1,7 @@
 package sg.edu.np.mad.Assignment1;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.text.format.DateFormat;
@@ -64,6 +65,8 @@ public class AdapterVideo extends RecyclerView.Adapter<AdapterVideo.HolderVideo>
 
         String timestamp = modelVideos.getTimestamp();
 
+        String test = modelVideos.videoUrl;
+
         //format timestamp
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(Long.parseLong(timestamp));
@@ -73,7 +76,7 @@ public class AdapterVideo extends RecyclerView.Adapter<AdapterVideo.HolderVideo>
         holder.videoTitle.setText(modelVideos.title);
         holder.videoTime.setText(formattedDateTime);
 
-        MediaItem mediaItem = MediaItem.fromUri(modelVideos.videoUrl);
+        MediaItem mediaItem = MediaItem.fromUri(test);
         holder.player.setMediaItem(mediaItem);
         holder.player.prepare();
     }
